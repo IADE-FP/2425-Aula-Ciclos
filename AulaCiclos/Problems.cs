@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
     public static void Problem1() { // idem
@@ -34,10 +35,30 @@ class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
     public static void Problem2() {
         // Escreva um programa que leia um número inteiro e imprima todos os números pares entre 0 e esse número.
         int number = Convert.ToInt32(Console.ReadLine());
-        for(int i = 2; i <= number; i+=2) {
+        for (int i = 2; i <= number; i += 2) {
             // Console.Write($"{i} ");
             Console.WriteLine(i);
         }
         Console.WriteLine();
+    }
+
+    public static void Problem3() {
+        // Escreva um programa que pede ao utilizador para introduzir um número primo. O programa deve repetir o pedido até o utilizador introduzir um número válido.
+        while (true) {
+            Console.Write("Introduza um número: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            bool isPrime = true;
+            for (int i = 2; i < n; i++) {
+                if (n % i == 0) {
+                    // Não é primo!
+                    isPrime = false;
+                }
+            }
+            if (isPrime) {
+                // É primo!
+                Console.WriteLine($"O número {n} é primo.");
+                break;
+            }
+        }
     }
 }
