@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
     public static void Problem1() { // idem
         bool exit = false;
@@ -27,5 +29,15 @@ class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
                     break;
             }
         }
+    }
+
+    public static void Problem2() {
+        // Escreva um programa que leia um número inteiro e imprima todos os números pares entre 0 e esse número.
+        int number = Convert.ToInt32(Console.ReadLine());
+        for(int i = 2; i <= number; i+=2) {
+            // Console.Write($"{i} ");
+            Console.WriteLine(i);
+        }
+        Console.WriteLine();
     }
 }
