@@ -81,4 +81,14 @@ class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
             }
         }
     }
+
+    public static void Problem5() {
+        Console.Write("Introduza um número inteiro positivo: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+        int result = 1;
+        for (int i = n; i > 0; i--) {
+            result *= i;
+        }
+        Console.WriteLine($"Fatorial de {n} é {result}.");
+    }
 }
