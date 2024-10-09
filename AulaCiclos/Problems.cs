@@ -62,13 +62,13 @@ class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
         }
     }
 
-    public static void Problem4(){
+    public static void Problem4() {
         // Escreva um programa que permite introduzir um número real por linha até encontrar uma linha vazia. O programa mostra a média do valores introduzidos.
         double values = 0.0;
         int counter = 0;
-        while(true) {
+        while (true) {
             string line = Console.ReadLine();
-            if(line.Length == 0) {
+            if (line.Length == 0) {
                 // Mostrar a média!
                 Console.WriteLine($"Média: {values / counter}");
                 break;
@@ -90,5 +90,16 @@ class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
             result *= i;
         }
         Console.WriteLine($"Fatorial de {n} é {result}.");
+    }
+
+    public static void Problem6a() {
+        Console.Write("Introduza um valor para infinito: ");
+        int limit = Convert.ToInt32(Console.ReadLine());
+        double result = 0.0;
+        for (double n = 1; n < limit; n++) {
+            // Console.WriteLine(result);
+            result += 1 / (n * (n + 1));
+        }
+        Console.WriteLine(result);
     }
 }
