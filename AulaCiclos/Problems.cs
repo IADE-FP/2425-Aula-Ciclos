@@ -1,105 +1,182 @@
-using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml.Schema;
 
-class Problems { // Não sabemos para que serve e/ou como funciona (ainda)
-    public static void Problem1() { // idem
-        bool exit = false;
-        while (!exit) {
-            Console.WriteLine("Escolha uma opção:");
-            Console.WriteLine("1. Quadrado");
-            Console.WriteLine("2. Triângulo");
-            Console.WriteLine("3. Círculo");
-            Console.WriteLine("4. Sair");
-            int option = Convert.ToInt32(Console.ReadLine());
-            switch (option) {
+class Problems{
+    
+    public static void Problem1(){
+        int option;
+
+        do{
+            Console.WriteLine("\nEscolhe uma das opções: \n 1 - Quadrado\n 2 - Triângulo\n 3 - Circulo\n 4 - Sair");
+            option = Convert.ToInt16(Console.ReadLine());
+
+            switch(option){
                 case 1:
-                    Console.WriteLine("Área = lado x lado");
+                    Console.WriteLine("Formula Área Quadrado: Lado x Lado");
                     break;
+
                 case 2:
-                    Console.WriteLine("Área = base x altura / 2");
+                    Console.WriteLine("Formula Área Triângulo: Base x Altura");
                     break;
+                
                 case 3:
-                    Console.WriteLine("Área = 2 x pi x raio");
+                    Console.WriteLine("Formula Área Circulo: PI * Raio^2");
                     break;
+
                 case 4:
-                    Console.WriteLine("Até breve!");
-                    exit = true;
+                    Console.WriteLine("Sair");
                     break;
+
                 default:
-                    Console.WriteLine("Opção inválida.");
+                    Console.WriteLine("Erro");
                     break;
             }
         }
+        while(option != 4);
     }
+    
+    public static void Problem2(){
+        int numero;
 
-    public static void Problem2() {
-        // Escreva um programa que leia um número inteiro e imprima todos os números pares entre 0 e esse número.
-        int number = Convert.ToInt32(Console.ReadLine());
-        for (int i = 2; i <= number; i += 2) {
-            // Console.Write($"{i} ");
-            Console.WriteLine(i);
+        do{
+            Console.Write("Introduz um numero: ");
+            numero = Convert.ToInt16(Console.ReadLine());
         }
-        Console.WriteLine();
-    }
+        while(numero <= 0);
 
-    public static void Problem3() {
-        // Escreva um programa que pede ao utilizador para introduzir um número primo. O programa deve repetir o pedido até o utilizador introduzir um número válido.
-        while (true) {
-            Console.Write("Introduza um número: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            bool isPrime = true;
-            for (int i = 2; i < n; i++) {
-                if (n % i == 0) {
-                    // Não é primo!
-                    isPrime = false;
+        for(int i = 0; i <= numero; i++){
+            if(i % 2 == 0){
+                Console.Write($"{i} ");
+            }
+        }
+    }
+   
+    public static void Problem3(){
+        int number;
+        bool number_prime;
+        
+        do{
+            Console.Write("Introduz um numero: ");
+            number = Convert.ToInt16(Console.ReadLine());
+            number_prime = true;
+
+            for(int i = 2; i < number; i++){
+                if(number % i == 0){
+                    number_prime = false;
+                    break;
                 }
             }
-            if (isPrime) {
-                // É primo!
-                Console.WriteLine($"O número {n} é primo.");
-                break;
-            }
         }
-    }
+        while(!number_prime);
 
-    public static void Problem4() {
-        // Escreva um programa que permite introduzir um número real por linha até encontrar uma linha vazia. O programa mostra a média do valores introduzidos.
-        double values = 0.0;
-        int counter = 0;
-        while (true) {
+        
+    }
+    public static void Problem4(){
+        double media = 0.0;
+        int count = 0;
+
+        while(true){
+            Console.Write("Introduz um numero: ");
             string line = Console.ReadLine();
-            if (line.Length == 0) {
-                // Mostrar a média!
-                Console.WriteLine($"Média: {values / counter}");
+
+            if(line.Length == 0){
+                Console.WriteLine($"\nA média dos valores é: {media / count}");
                 break;
             }
-            else {
-                // Somar valores.
-                values += Convert.ToDouble(line);
-                // Aumentar a contagem.
-                counter++;
+            else{
+                media += Convert.ToDouble(line);
+                count++;
             }
+        }        
+    }
+    public static void Problem5(){
+        Console.Write("\nIntroduz um numero: ");
+        int num = Convert.ToInt16(Console.ReadLine());
+        int total = 1;
+
+        for (int i = num; i > 0; i--){
+            total *= i;
         }
+
+        Console.WriteLine($"\nFatorial de {num} é: {total}");
     }
 
-    public static void Problem5() {
-        Console.Write("Introduza um número inteiro positivo: ");
-        int n = Convert.ToInt32(Console.ReadLine());
-        int result = 1;
-        for (int i = n; i > 0; i--) {
-            result *= i;
-        }
-        Console.WriteLine($"Fatorial de {n} é {result}.");
-    }
-
-    public static void Problem6a() {
-        Console.Write("Introduza um valor para infinito: ");
+    public static void Problem6a(){
+        Console.Write("\nIntroduz um numero: ");
         int limit = Convert.ToInt32(Console.ReadLine());
-        double result = 0.0;
-        for (double n = 1; n < limit; n++) {
-            // Console.WriteLine(result);
-            result += 1 / (n * (n + 1));
+        double total = 0.0;
+
+        for (double n = 1; n < limit; n++){
+            total += 1 / (n * (n + 1));
         }
-        Console.WriteLine(result);
+
+        Console.WriteLine($"\n Soma é: {total}");
+    }
+
+    public static void Problem6b(){
+        Console.Write("\nIntroduz um numero: ");
+        int limit = Convert.ToInt32(Console.ReadLine());
+        double total = 1;
+
+        for (double n = 1; n < limit; n++){
+            total += Math.Pow(n, 1/4) * (1/Math.Sqrt(n+1) - 1/Math.Sqrt(n));
+        }
+
+        Console.WriteLine($"\n Soma é: {total}");
+    }
+    
+    public static void Problem6c(){
+        Console.Write("\nIntroduz um numero: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        double total = 1;
+        double factorial = 1;
+
+        for (double i = 1; i < num; i++){
+            for (double j = i; j > 0; j--){
+                factorial *= i;
+            }
+            total += Math.Pow(i, i) * Math.Cos(i * Math.PI);
+        }
+
+        Console.WriteLine($"\n Soma é: {total}");
+    }
+
+    public static void Problem6d(){
+        Console.Write("\nIntroduz um numero: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        int total = 1;
+
+        for(int i = 1; i < num; i++){
+           for(int n = 1; n < i; n++){
+            total += Convert.ToInt32(n / Math.Pow(n, 2));
+           }            
+        }
+
+        Console.WriteLine($"\n Soma é: {total}");
+    }
+
+    public static void Problem7(){
+        int x;
+        do{
+            Console.Write("\nIntroduz um numero para o seno de X: ");
+            x = Convert.ToInt32(Console.ReadLine());
+        }
+        while(x < -4*Math.PI || x > 4*Math.PI);
+
+        Console.Write("\nIntroduz um numero para o limite: ");
+        int num = Convert.ToInt32(Console.ReadLine());        
+
+        double total = 1, factorial = 1;
+
+        for(double n = 1; n < num; n++){
+           for(double i = n; i > 0; i--){
+                factorial *= (2 * n + 1) * i;
+                
+           }
+            total += Math.Pow(-1, n) *  Math.Pow(x, 2*n+1) / factorial;               
+        }
+
+        Console.WriteLine($"\n Soma é: {Math.Sin(total)}");
     }
 }
